@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-brand-50: #f0f7ff;
+  --color-brand-100: #e0effe;
+  --color-brand-200: #bce2fe;
+  --color-brand-300: #7cc8fd;
+  --color-brand-400: #35abfb;
+  --color-brand-500: #0c90eb;
+  --color-brand-600: #0071c8;
+  --color-brand-700: #015aa2;
+  --color-brand-800: #064d85;
+  --color-brand-900: #0b416e;
+  --color-brand-950: #072949;
+  
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+@layer base {
+  body {
+    @apply bg-slate-950 text-slate-100 font-sans antialiased overflow-x-hidden selection:bg-brand-500/30 selection:text-brand-200;
+  }
+}
+
+/* Custom Scrollbar for Premium UI */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-slate-950;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-slate-800 rounded-full hover:bg-slate-700 transition-colors duration-200;
+}
+
+/* Glassmorphism Classes for SaaS visual aesthetics */
+.glass-panel {
+  @apply bg-slate-900/60 backdrop-blur-xl border border-slate-800/80 shadow-2xl shadow-black/20;
+}
+
+.glass-card {
+  @apply bg-slate-900/40 backdrop-blur-lg border border-slate-800/50 hover:border-slate-700/80 transition-all duration-300 shadow-xl;
+}
+
+.glass-input {
+  @apply bg-slate-950/60 border border-slate-800 focus:border-brand-500/80 focus:ring-1 focus:ring-brand-500/50 rounded-lg py-2.5 px-4 text-slate-100 placeholder-slate-500 focus:outline-none transition-all duration-200;
+}
+
+.glass-btn-primary {
+  @apply bg-gradient-to-r from-brand-600 to-brand-500 hover:from-brand-500 hover:to-brand-400 text-white font-medium py-2.5 px-5 rounded-lg shadow-lg shadow-brand-600/10 hover:shadow-brand-500/20 active:scale-[0.98] transition-all duration-200 disabled:opacity-50 disabled:pointer-events-none;
+}
+
+.glass-btn-secondary {
+  @apply bg-slate-900 hover:bg-slate-800 text-slate-200 border border-slate-800 hover:border-slate-700 font-medium py-2.5 px-5 rounded-lg active:scale-[0.98] transition-all duration-200 disabled:opacity-50 disabled:pointer-events-none;
+}
+
+/* Shimmer animation for loading states */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.shimmer-element {
+  background: linear-gradient(90deg, #0f172a 25%, #1e293b 50%, #0f172a 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite linear;
+}

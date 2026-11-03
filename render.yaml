@@ -1,0 +1,37 @@
+services:
+  # Backend Spring Boot Service
+  - type: web
+    name: ai-resume-analyzer-backend
+    env: docker
+    dockerfilePath: backend/Dockerfile
+    dockerContext: backend
+    plan: standard
+    envVars:
+      - key: SPRING_DATASOURCE_URL
+        fromDatabase:
+          name: ai-resume-analyzer-db
+          property: connectionString
+      - key: APP_AI_PROVIDER
+        value: mock
+      - key: APP_JWT_SECRET
+        generateValue: true
+      - key: APP_JWT_EXPIRATION
+        value: "86400000"
+
+  # Frontend React Web Application
+  - type: web
+    name: ai-resume-analyzer-frontend
+    env: docker
+    dockerfilePath: frontend/Dockerfile
+    dockerContext: frontend
+    plan: standard
+    envVars:
+      - key: VITE_API_BASE_URL
+        fromService:
+          type: web
+          name: ai-resume-analyzer-backend
+          property: host
+
+databases:
+  - name: ai-resume-analyzer-db
+    plan: standard
